@@ -17,7 +17,7 @@
 #' 
 #' @export
 noaa_read <- function(filename) {
-  full_file <- system.file("extdata",filename,package="noaaearthquake")
+  full_file <- system.file("extdata",filename,package="earthquake")
   if(!file.exists(full_file))
     stop("file '", filename, "' does not exist")
   data <- suppressMessages({
