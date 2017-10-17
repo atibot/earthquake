@@ -59,7 +59,7 @@ eq_clean_data <- function(filename) {
     approxDay <- DAY
     approxDay[is.na(approxDay)] <- 1
 
-    approxDate <- as.Date(paste(YEAR, approxMonth, approxDay, sep="-"))
+    DATE <- as.Date(paste(YEAR, approxMonth, approxDay, sep="-"))
 
     ## Convert lat and long to numeric:
     Latitude <- as.numeric(LATITUDE)
