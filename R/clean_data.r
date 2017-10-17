@@ -13,7 +13,7 @@
 #' @importFrom dplyr tbl_df
 #' 
 #' @examples
-#' my_data <- fars_read(filename="accident_2013.csv.bz2")
+#' my_raw_data <- noaa_read(filename="signif.txt")
 #' 
 #' @export
 noaa_read <- function(filename) {
@@ -40,7 +40,7 @@ noaa_read <- function(filename) {
 #' @importFrom tools toTitleCase
 #' 
 #' @examples
-#' my_data <- fars_read(filename="accident_2013.csv.bz2")
+#' my_clean_data <- eq_clean_data(filename="signif.txt")
 #' 
 #' @export
 eq_clean_data <- function(filename) {
