@@ -90,18 +90,19 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", Geom,
 #'              default value of 0.4.
 #' @param stroke A numeric vector controlling the border with of the point.
 #' 
-#' @return This function an earthquake timeline plot to the current ggplot.
+#' @return This function adds an earthquake timeline plot to the current 
+#'         ggplot.
 #' 
 #' @importFrom ggplot2 layer
 #' 
 #' @examples
-#' eq_data <- data.frame("Date"=as.Date(c("2000-01-01","2010-05-15")),
-#'                       "Country"=c("France","Japan"),
-#'                       "Total_Deaths"=c(0,10),
-#'                       "Magnitude"=c(6.8, 5.6))
+#' eq_data <- eq_clean_data("signif.txt") %>% 
+#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #' 
-#' ggplot2::ggplot(data = eq_data) +
-#'  geom_timeline(aes(x=Date, y=Country, fill=Total_Deaths, size=Magnitude)) 
+#' ggplot2::ggplot(eq_data) +
+#'   geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_MAG_MW)) + 
+#'   labs(fill="# deaths", size="Magnitude") + 
+#'   eqTheme()
 #' 
 #' @export
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
@@ -256,25 +257,20 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", Geom,
 #'              are given labels. The default behavior is to label all 
 #'              earthquakes.
 #' 
-#' @return This function an earthquake timeline plot with labels to the 
-#'          current ggplot.
+#' @return This function adds an earthquake timeline plot with labels to  
+#'         the current ggplot.
 #' 
 #' @importFrom ggplot2 layer
 #' 
 #' @examples
-#' eq_data <- data.frame("Date"=as.Date(c("2000-01-01","2010-05-15")),
-#'                       "Country"=c("France","Japan"),
-#'                       "Total_Deaths"=c(0,10),
-#'                       "Magnitude"=c(6.8, 5.6),
-#'                       "City"=c("Paris","Tokyo"))
+#' eq_data <- eq_clean_data("signif.txt") %>% 
+#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #' 
-#' ggplot2::ggplot(data = eq_data) +
-#'  geom_timeline_label(aes(x=Date, y=Country, fill=Total_Deaths, 
-#'                          size=Magnitude, label=City))
-#' 
-#' ggplot2::ggplot(data = eq_data) +
-#'  geom_timeline_label(aes(x=Date, y=Country, fill=Total_Deaths, 
-#'                          size=Magnitude, label=City), n_max=1)
+#' ggplot2::ggplot(eq_data) +
+#'   geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
+#'                           size=EQ_MAG_MW, label=LocalLocation)) + 
+#'   labs(fill="# deaths", size="Magnitude") + 
+#'   eqTheme()
 #' 
 #' @export
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
