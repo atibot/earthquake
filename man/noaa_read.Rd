@@ -19,6 +19,6 @@ This function reads in a tab-delimited NOAA earthquake file.
 An error message is printed if the file is not found.
 }
 \examples{
-my_data <- fars_read(filename="accident_2013.csv.bz2")
+my_raw_data <- noaa_read(filename="signif.txt")
 
 }

@@ -51,6 +51,13 @@ eq_clean_data <- function(filename) {
   dat$AD[dat$YEAR < 0] <- FALSE
   dat$YEAR <- abs(dat$YEAR)
 
+  ## 
+  dat$EQ_MAG_MW <- as.numeric(dat$EQ_MAG_MW)
+  dat$EQ_MAG_MS <- as.numeric(dat$EQ_MAG_MS)
+  dat$EQ_MAG_MB <- as.numeric(dat$EQ_MAG_MB)
+  dat$EQ_MAG_MFA <- as.numeric(dat$EQ_MAG_MFA)
+  dat$TOTAL_DEATHS <- as.numeric(dat$TOTAL_DEATHS)
+  
   dat <- within(dat, {
     ## Create approximate date fields that replace missing values:
     approxMonth <- MONTH
@@ -141,5 +148,7 @@ eq_clean_data <- function(filename) {
   dat$LocalLocation <- sub("Near e","Near E", dat$LocalLocation)
   dat$LocalLocation <- sub("Me\\xico","Mexico", dat$LocalLocation, fixed=TRUE)
 
+  dat$Country <- factor(dat$Country)
+  
   return(dat)
 }
