@@ -13,7 +13,7 @@
 #' @importFrom dplyr tbl_df
 #' 
 #' @examples
-#' my_raw_data <- noaa_read(filename="signif.txt")
+#' my_raw_data <- noaa_read(filename="NOAA_earthquakes.txt")
 #' 
 #' @export
 noaa_read <- function(filename) {
@@ -40,7 +40,7 @@ noaa_read <- function(filename) {
 #' @importFrom tools toTitleCase
 #' 
 #' @examples
-#' my_clean_data <- eq_clean_data(filename="signif.txt")
+#' my_clean_data <- eq_clean_data(filename="NOAA_earthquakes.txt")
 #' 
 #' @export
 eq_clean_data <- function(filename) {
