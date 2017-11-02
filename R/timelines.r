@@ -24,12 +24,12 @@
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree
 #' 
 #' @export
-GeomTimeline <- ggplot2::ggproto("GeomTimeline", Geom,
+GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y"),
   default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black", 
                               fill = "black", alpha = 0.4, stroke = 0.5,),
-  draw_key = draw_key_point,
+  draw_key = ggplot2::draw_key_point,
   draw_panel = function(data, panel_scales, coord) {
     ## Transform the data first
     coords <- coord$transform(data, panel_scales)
@@ -146,13 +146,13 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree textGrob
 #' 
 #' @export
-geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", Geom,
+geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y","label"),
   default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black", 
                               fill = "black", alpha = 0.4, stroke = 0.5,
                               label=""),
-  draw_key = draw_key_point,
+  draw_key = ggplot2::draw_key_point,
   draw_panel = function(data, panel_scales, coord, n_max) {
     ## Transform the data first
     coords <- coord$transform(data, panel_scales)
