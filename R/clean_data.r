@@ -13,10 +13,10 @@
 #' @importFrom dplyr tbl_df
 #' 
 #' @examples
-#' my_raw_data <- noaa_read(filename="NOAA_earthquakes.txt")
+#' my_raw_data <- eq_read_data(filename="NOAA_earthquakes.txt")
 #' 
 #' @export
-noaa_read <- function(filename) {
+eq_read_data <- function(filename) {
   full_file <- system.file("extdata",filename,package="earthquake")
   if(!file.exists(full_file))
     stop("file '", filename, "' does not exist")
@@ -44,7 +44,7 @@ noaa_read <- function(filename) {
 #' 
 #' @export
 eq_clean_data <- function(filename) {
-  dat <- noaa_read(filename)
+  dat <- eq_read_data(filename)
 
   ## Keep track of whether the year is BC or AD:
   dat$AD <- TRUE
