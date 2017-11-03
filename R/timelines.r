@@ -223,7 +223,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
                       y = coords_label$y + v_line_height,
                       just = "centre", hjust = 0, vjust = 0, rot = 45,
                       check.overlap = FALSE, default.units = "npc",
-                      name = NULL, gp = gpar(), vp = NULL)
+                      name = NULL, gp = grid::gpar(), vp = NULL)
       saveList[[length(saveList) + 1]] <- lbls
     }
     
