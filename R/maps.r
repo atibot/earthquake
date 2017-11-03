@@ -28,7 +28,7 @@ eq_map <- function(dataset, annot_col) {
   dataset$annot_col <- dataset[[annot_col]]
 
   leaflet::leaflet() %>%
-    leaflet::addProviderTiles(providers$OpenStreetMap) %>% 
+    leaflet::addProviderTiles(leaflet::providers$OpenStreetMap) %>% 
     leaflet::addCircleMarkers(data = dataset, 
                       lng = ~ Longitude, lat = ~ Latitude,
                       fillOpacity = 0.2, radius = ~ EQ_PRIMARY,
