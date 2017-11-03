@@ -96,7 +96,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #' @importFrom ggplot2 layer
 #' 
 #' @examples
-#' eq_data <- eq_clean_data("signif.txt") %>% 
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #' 
 #' ggplot2::ggplot(eq_data) +
@@ -263,7 +263,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #' @importFrom ggplot2 layer
 #' 
 #' @examples
-#' eq_data <- eq_clean_data("signif.txt") %>% 
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #' 
 #' ggplot2::ggplot(eq_data) +

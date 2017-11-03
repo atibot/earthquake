@@ -16,7 +16,7 @@
 #' @importFrom leaflet leaflet addProviderTiles addCircleMarkers
 #' 
 #' @examples
-#' eq_data <- eq_clean_data("signif.txt") %>% 
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #' 
 #' eq_data %>% 
@@ -51,7 +51,7 @@ eq_map <- function(dataset, annot_col) {
 #'         omitted.
 #' 
 #' @examples
-#' eq_data <- eq_clean_data("signif.txt") %>% 
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #' 
 #' eq_data %>% 
