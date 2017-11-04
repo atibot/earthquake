@@ -48,6 +48,7 @@ eq_read_data <- function(filename) {
 #' @examples
 #' clean_local_location("CUZCO,COLLAO,LIMA")
 #' 
+#' @export
 clean_local_location <- function(local_loc_str) {
   ## Remove these if they constitute the whole LocalLocation string:
   remove_these <- c("e","w","n","s",
