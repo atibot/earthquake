@@ -307,10 +307,12 @@ eqTheme <- function() {
 #'
 #' @param dataset A data frame of earthquake data, as returned by
 #'                eq_clean_data.
-#' @param xmin An optional lower bound on the date range represented in
-#'             the plot.
-#' @param xmax An optional upper bound on the date range represented in
-#'             the plot.
+#' @param xmin A date object giving a lower bound for the dates represented 
+#'             in the plot. If xmin is set, the dataset is subsetted to 
+#'             exclude dates before xmin.
+#' @param xmax A date object giving an upper bound for the dates 
+#'             represented in the plot. If xmax is set, the dataset is 
+#'             subsetted to exclude dates after xmax.
 #' @param label A Boolean indicating whether labels showing the local
 #'              location of the earthquake should be included in the plot.
 #'
