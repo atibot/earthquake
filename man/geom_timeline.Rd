@@ -29,19 +29,20 @@ default value of 0.4.}
 \item{stroke}{A numeric vector controlling the border with of the point.}
 }
 \value{
-This function an earthquake timeline plot to the current ggplot.
+This function adds an earthquake timeline plot to the current 
+        ggplot.
 }
 \description{
 This function creates a plot showing earthquakes by date and 
  country.
 }
 \examples{
-eq_data <- data.frame("Date"=as.Date(c("2000-01-01","2010-05-15")),
-                      "Country"=c("France","Japan"),
-                      "Total_Deaths"=c(0,10),
-                      "Magnitude"=c(6.8, 5.6))
+eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
+  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 
-ggplot2::ggplot(data = eq_data) +
- geom_timeline(aes(x=Date, y=Country, fill=Total_Deaths, size=Magnitude)) 
+ggplot2::ggplot(eq_data) +
+  geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_MAG_MW)) + 
+  labs(fill="# deaths", size="Magnitude") + 
+  eqTheme()
 
 }

@@ -38,8 +38,8 @@ default value of 0.4.}
 for each earthquake; this is usually a city or region name.}
 }
 \value{
-This function an earthquake timeline plot with labels to the 
-         current ggplot.
+This function adds an earthquake timeline plot with labels to  
+        the current ggplot.
 }
 \description{
 This function creates a plot showing earthquakes by date, country, and 
@@ -48,18 +48,13 @@ add labels showing the city or region in which the earthquake took
 place.
 }
 \examples{
-eq_data <- data.frame("Date"=as.Date(c("2000-01-01","2010-05-15")),
-                      "Country"=c("France","Japan"),
-                      "Total_Deaths"=c(0,10),
-                      "Magnitude"=c(6.8, 5.6),
-                      "City"=c("Paris","Tokyo"))
+eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
+  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 
-ggplot2::ggplot(data = eq_data) +
- geom_timeline_label(aes(x=Date, y=Country, fill=Total_Deaths, 
-                         size=Magnitude, label=City))
-
-ggplot2::ggplot(data = eq_data) +
- geom_timeline_label(aes(x=Date, y=Country, fill=Total_Deaths, 
-                         size=Magnitude, label=City), n_max=1)
+ggplot2::ggplot(eq_data) +
+  geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
+                          size=EQ_MAG_MW, label=LocalLocation)) + 
+  labs(fill="# deaths", size="Magnitude") + 
+  eqTheme()
 
 }

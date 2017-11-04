@@ -13,12 +13,13 @@ eq_clean_data(filename)
 This function returns a \code{tbl_df} object.
 }
 \description{
-This function cleans up a NOAA earthquake file.
+This function cleans up a NOAA earthquake file. Missing months 
+and days are filled in with 1's. Some BC dates are approximate.
 }
 \note{
 An error message is printed if the file is not found.
 }
 \examples{
-my_clean_data <- eq_clean_data(filename="signif.txt")
+my_clean_data <- eq_clean_data(filename="NOAA_earthquakes.txt")
 
 }
