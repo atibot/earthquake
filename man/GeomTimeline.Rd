@@ -3,7 +3,7 @@
 \docType{data}
 \name{GeomTimeline}
 \alias{GeomTimeline}
-\title{This class is used to generate earthquake timeline plots for 
+\title{This class is used to generate earthquake timeline plots for
 \code{geom_timeline}.}
 \format{An object of class \code{GeomTimeline} (inherits from \code{Geom}, \code{ggproto}) of length 6.}
 \usage{
@@ -12,7 +12,7 @@ GeomTimeline
 \arguments{
 \item{x}{A vector of dates on which earthquakes occurred.}
 
-\item{y}{A factor vector giving the country in which each earthquake 
+\item{y}{A factor vector giving the country in which each earthquake
 occurred (optional).}
 
 \item{shape}{A numeric vector giving the point shape to be used.}
@@ -23,8 +23,8 @@ occurred (optional).}
 
 \item{fill}{A string vector controlling the fill color of the points.}
 
-\item{alpha}{A numeric constant in the interval [0,1] controlling the 
-transparency of the wind radii chart. This parameter has a  
+\item{alpha}{A numeric constant in the interval [0,1] controlling the
+transparency of the wind radii chart. This parameter has a
 default value of 0.4.}
 
 \item{stroke}{A numeric vector controlling the border with of the point.}
@@ -33,8 +33,8 @@ default value of 0.4.}
 This returns a tree of grid objects.
 }
 \description{
-This class creates grobs need to visualize earthquakes by date and 
-country. This class extends \code{Geom} and is used by 
+This class creates grobs need to visualize earthquakes by date and
+country. This class extends \code{Geom} and is used by
 \code{geom_timeline}. A point is plotted for each unique earthquake.
 }
 \keyword{datasets}

@@ -12,7 +12,7 @@ geomTimelineLabel
 \arguments{
 \item{x}{A vector of dates on which earthquakes occurred.}
 
-\item{y}{A factor vector giving the country in which each earthquake 
+\item{y}{A factor vector giving the country in which each earthquake
 occurred (optional).}
 
 \item{shape}{A numeric vector giving the point shape to be used.}
@@ -23,26 +23,26 @@ occurred (optional).}
 
 \item{fill}{A string vector controlling the fill color of the points.}
 
-\item{alpha}{A numeric constant in the interval [0,1] controlling the 
-transparency of the wind radii chart. This parameter has a  
+\item{alpha}{A numeric constant in the interval [0,1] controlling the
+transparency of the wind radii chart. This parameter has a
 default value of 0.4.}
 
 \item{stroke}{A numeric vector controlling the border with of the point.}
 
-\item{label}{A string vector containing the label that should be used 
+\item{label}{A string vector containing the label that should be used
 for each earthquake; this is usually a city or region name.}
 
-\item{n_max}{A integer constant. If n_max is used, only the n_max 
-largest earthquakes, as determined by the value of size, 
-are given labels. The default behavior is to label all 
+\item{n_max}{A integer constant. If n_max is used, only the n_max
+largest earthquakes, as determined by the value of size,
+are given labels. The default behavior is to label all
 earthquakes.}
 }
 \value{
 This returns a tree of grid objects.
 }
 \description{
-This class creates grobs need to visualize earthquakes by date, country, 
-and city or region. This class extends \code{Geom} and is used by 
+This class creates grobs need to visualize earthquakes by date, country,
+and city or region. This class extends \code{Geom} and is used by
 \code{geom_timeline_label}. A point is plotted for each unique earthquake.
 }
 \keyword{datasets}

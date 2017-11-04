@@ -11,7 +11,7 @@ geom_timeline(mapping = NULL, data = NULL, stat = "identity",
 \arguments{
 \item{x}{A vector of dates on which earthquakes occurred.}
 
-\item{y}{A factor vector giving the country in which each earthquake 
+\item{y}{A factor vector giving the country in which each earthquake
 occurred (optional).}
 
 \item{shape}{A numeric vector giving the point shape to be used.}
@@ -22,27 +22,27 @@ occurred (optional).}
 
 \item{fill}{A string vector controlling the fill color of the points.}
 
-\item{alpha}{A numeric constant in the interval [0,1] controlling the 
-transparency of the wind radii chart. This parameter has a  
+\item{alpha}{A numeric constant in the interval [0,1] controlling the
+transparency of the wind radii chart. This parameter has a
 default value of 0.4.}
 
 \item{stroke}{A numeric vector controlling the border with of the point.}
 }
 \value{
-This function adds an earthquake timeline plot to the current 
+This function adds an earthquake timeline plot to the current
         ggplot.
 }
 \description{
-This function creates a plot showing earthquakes by date and 
- country.
+This function creates a plot showing earthquakes by date and country.
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
+eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\%
   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 
 ggplot2::ggplot(eq_data) +
-  geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_MAG_MW)) + 
-  labs(fill="# deaths", size="Magnitude") + 
+  geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
+                 size=EQ_PRIMARY)) +
+  labs(fill="# deaths", size="Magnitude") +
   eqTheme()
 
 }

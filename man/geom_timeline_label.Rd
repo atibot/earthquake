@@ -2,7 +2,7 @@
 % Please edit documentation in R/timelines.r
 \name{geom_timeline_label}
 \alias{geom_timeline_label}
-\title{Create a timeline plot of earthquakes with labels showing the 
+\title{Create a timeline plot of earthquakes with labels showing the
 city or region.}
 \usage{
 geom_timeline_label(mapping = NULL, data = NULL, stat = "identity",
@@ -10,14 +10,14 @@ geom_timeline_label(mapping = NULL, data = NULL, stat = "identity",
   inherit.aes = TRUE, n_max = NULL, ...)
 }
 \arguments{
-\item{n_max}{A integer constant. If n_max is used, only the n_max 
-largest earthquakes, as determined by the value of size, 
-are given labels. The default behavior is to label all 
+\item{n_max}{A integer constant. If n_max is used, only the n_max
+largest earthquakes, as determined by the value of size,
+are given labels. The default behavior is to label all
 earthquakes.}
 
 \item{x}{A vector of dates on which earthquakes occurred.}
 
-\item{y}{A factor vector giving the country in which each earthquake 
+\item{y}{A factor vector giving the country in which each earthquake
 occurred (optional).}
 
 \item{shape}{A numeric vector giving the point shape to be used.}
@@ -28,33 +28,33 @@ occurred (optional).}
 
 \item{fill}{A string vector controlling the fill color of the points.}
 
-\item{alpha}{A numeric constant in the interval [0,1] controlling the 
-transparency of the wind radii chart. This parameter has a  
+\item{alpha}{A numeric constant in the interval [0,1] controlling the
+transparency of the wind radii chart. This parameter has a
 default value of 0.4.}
 
 \item{stroke}{A numeric vector controlling the border with of the point.}
 
-\item{label}{A string vector containing the label that should be used 
+\item{label}{A string vector containing the label that should be used
 for each earthquake; this is usually a city or region name.}
 }
 \value{
-This function adds an earthquake timeline plot with labels to  
+This function adds an earthquake timeline plot with labels to
         the current ggplot.
 }
 \description{
-This function creates a plot showing earthquakes by date, country, and 
-city or region. It is similar to geom_timeline, but has the option to 
-add labels showing the city or region in which the earthquake took 
+This function creates a plot showing earthquakes by date, country, and
+city or region. It is similar to geom_timeline, but has the option to
+add labels showing the city or region in which the earthquake took
 place.
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
+eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\%
   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 
 ggplot2::ggplot(eq_data) +
-  geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
-                          size=EQ_MAG_MW, label=LocalLocation)) + 
-  labs(fill="# deaths", size="Magnitude") + 
+  geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
+                          size=EQ_PRIMARY, label=LocalLocation)) +
+  labs(fill="# deaths", size="Magnitude") +
   eqTheme()
 
 }

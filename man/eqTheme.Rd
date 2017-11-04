@@ -10,6 +10,6 @@ eqTheme()
 This function changes the theme of a ggplot.
 }
 \description{
-This function creates a ggplot theme for earthquake timeline plots. 
+This function creates a ggplot theme for earthquake timeline plots.
 It is intended to be used with geom_timeline and geom_timeline_label.
 }
