@@ -112,9 +112,11 @@ eq_clean_data <- function(filename) {
   dat$AD[dat$YEAR >= 0] <- FALSE
 
   dat <- dat %>%
-    dplyr::mutate(EQ_MAG_MW = as.numeric(EQ_MAG_MW),
+    dplyr::mutate(EQ_PRIMARY = as.numeric(EQ_PRIMARY),
+                  EQ_MAG_MW = as.numeric(EQ_MAG_MW),
                   EQ_MAG_MS = as.numeric(EQ_MAG_MS),
                   EQ_MAG_MB = as.numeric(EQ_MAG_MB),
+                  EQ_MAG_ML = as.numeric(EQ_MAG_ML),
                   EQ_MAG_MFA = as.numeric(EQ_MAG_MFA),
                   TOTAL_DEATHS = as.numeric(TOTAL_DEATHS),
                   Latitude = as.numeric(LATITUDE),
