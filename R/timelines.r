@@ -1,33 +1,33 @@
 
-#' This class is used to generate earthquake timeline plots for 
+#' This class is used to generate earthquake timeline plots for
 #' \code{geom_timeline}.
-#' 
-#' This class creates grobs need to visualize earthquakes by date and 
-#' country. This class extends \code{Geom} and is used by 
+#'
+#' This class creates grobs need to visualize earthquakes by date and
+#' country. This class extends \code{Geom} and is used by
 #' \code{geom_timeline}. A point is plotted for each unique earthquake.
-#' 
+#'
 #' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake 
+#' @param y A factor vector giving the country in which each earthquake
 #'          occurred (optional).
 #' @param shape A numeric vector giving the point shape to be used.
 #' @param size A numeric vector representing the size of each point.
 #' @param colour A string vector controlling the color of the point borders.
 #' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the 
-#'              transparency of the wind radii chart. This parameter has a  
+#' @param alpha A numeric constant in the interval [0,1] controlling the
+#'              transparency of the wind radii chart. This parameter has a
 #'              default value of 0.4.
 #' @param stroke A numeric vector controlling the border with of the point.
-#' 
+#'
 #' @return This returns a tree of grid objects.
-#' 
+#'
 #' @importFrom ggplot2 ggproto aes
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree
-#' 
+#'
 #' @export
 GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y"),
-  default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black", 
+  default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black",
                               fill = "black", alpha = 0.4, stroke = 0.5,),
   draw_key = ggplot2::draw_key_point,
   draw_panel = function(data, panel_scales, coord) {
@@ -74,39 +74,38 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 )
 
 #' Create a timeline plot of earthquakes
-#' 
-#' This function creates a plot showing earthquakes by date and 
-#'  country.
-#' 
+#'
+#' This function creates a plot showing earthquakes by date and country.
+#'
 #' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake 
+#' @param y A factor vector giving the country in which each earthquake
 #'          occurred (optional).
 #' @param shape A numeric vector giving the point shape to be used.
 #' @param size A numeric vector representing the size of each point.
 #' @param colour A string vector controlling the color of the point borders.
 #' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the 
-#'              transparency of the wind radii chart. This parameter has a  
+#' @param alpha A numeric constant in the interval [0,1] controlling the
+#'              transparency of the wind radii chart. This parameter has a
 #'              default value of 0.4.
 #' @param stroke A numeric vector controlling the border with of the point.
-#' 
-#' @return This function adds an earthquake timeline plot to the current 
+#'
+#' @return This function adds an earthquake timeline plot to the current
 #'         ggplot.
-#' 
+#'
 #' @importFrom ggplot2 layer
-#' 
+#'
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
-#' 
+#'
 #' ggplot2::ggplot(eq_data) +
-#'   geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_MAG_MW)) + 
-#'   labs(fill="# deaths", size="Magnitude") + 
+#'   geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_MAG_MW)) +
+#'   labs(fill="# deaths", size="Magnitude") +
 #'   eqTheme()
-#' 
+#'
 #' @export
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
-                          position = "identity", na.rm = FALSE, 
+                          position = "identity", na.rm = FALSE,
                           show.legend = NA, inherit.aes = TRUE, ...) {
   ggplot2::layer(
     geom = GeomTimeline, mapping = mapping, data = data, stat = stat,
@@ -117,39 +116,39 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 
 #' This class is used to generate earthquake timeline plots with l
 #' location labels for \code{geom_timeline_label}.
-#' 
-#' This class creates grobs need to visualize earthquakes by date, country, 
-#' and city or region. This class extends \code{Geom} and is used by 
+#'
+#' This class creates grobs need to visualize earthquakes by date, country,
+#' and city or region. This class extends \code{Geom} and is used by
 #' \code{geom_timeline_label}. A point is plotted for each unique earthquake.
-#' 
+#'
 #' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake 
+#' @param y A factor vector giving the country in which each earthquake
 #'          occurred (optional).
 #' @param shape A numeric vector giving the point shape to be used.
 #' @param size A numeric vector representing the size of each point.
 #' @param colour A string vector controlling the color of the point borders.
 #' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the 
-#'              transparency of the wind radii chart. This parameter has a  
+#' @param alpha A numeric constant in the interval [0,1] controlling the
+#'              transparency of the wind radii chart. This parameter has a
 #'              default value of 0.4.
 #' @param stroke A numeric vector controlling the border with of the point.
-#' @param label A string vector containing the label that should be used 
+#' @param label A string vector containing the label that should be used
 #'              for each earthquake; this is usually a city or region name.
-#' @param n_max A integer constant. If n_max is used, only the n_max 
-#'              largest earthquakes, as determined by the value of size, 
-#'              are given labels. The default behavior is to label all 
+#' @param n_max A integer constant. If n_max is used, only the n_max
+#'              largest earthquakes, as determined by the value of size,
+#'              are given labels. The default behavior is to label all
 #'              earthquakes.
-#' 
+#'
 #' @return This returns a tree of grid objects.
-#' 
+#'
 #' @importFrom ggplot2 ggproto aes
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree textGrob
-#' 
+#'
 #' @export
 geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y","label"),
-  default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black", 
+  default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black",
                               fill = "black", alpha = 0.4, stroke = 0.5,
                               label=""),
   draw_key = ggplot2::draw_key_point,
@@ -193,7 +192,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
       )
     )
     saveList[[length(saveList) + 1]] <- pts
-     
+
     ## Dataset for labels:
     if(is.null(n_max) || n_max > 0) {
       if(is.null(n_max)) {
@@ -202,9 +201,9 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
         coords_sort <- coords[order(coords$size, decreasing=TRUE), ]
         coords_label <- coords_sort[seq(n_max), ]
       }
-      
+
       ## Create vertical lines:
-      ## Suppose height of vertical line is always 1/6 of the space 
+      ## Suppose height of vertical line is always 1/6 of the space
       ## that each country has available.
       space_per_country <- 1/n
       v_line_height <- space_per_country/5
@@ -217,64 +216,64 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
           gp = grid::gpar(lwd = 2, col = "gray")
         )
       }
-      
+
       ## Create grob for labels:
-      lbls <- grid::textGrob(coords_label$label, x = coords_label$x, 
+      lbls <- grid::textGrob(coords_label$label, x = coords_label$x,
                       y = coords_label$y + v_line_height,
                       just = "centre", hjust = 0, vjust = 0, rot = 45,
                       check.overlap = FALSE, default.units = "npc",
                       name = NULL, gp = grid::gpar(), vp = NULL)
       saveList[[length(saveList) + 1]] <- lbls
     }
-    
+
     grid::gTree(children = saveList)
   }
 )
 
-#' Create a timeline plot of earthquakes with labels showing the 
+#' Create a timeline plot of earthquakes with labels showing the
 #' city or region.
-#' 
-#' This function creates a plot showing earthquakes by date, country, and 
-#' city or region. It is similar to geom_timeline, but has the option to 
-#' add labels showing the city or region in which the earthquake took 
+#'
+#' This function creates a plot showing earthquakes by date, country, and
+#' city or region. It is similar to geom_timeline, but has the option to
+#' add labels showing the city or region in which the earthquake took
 #' place.
-#' 
+#'
 #' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake 
+#' @param y A factor vector giving the country in which each earthquake
 #'          occurred (optional).
 #' @param shape A numeric vector giving the point shape to be used.
 #' @param size A numeric vector representing the size of each point.
 #' @param colour A string vector controlling the color of the point borders.
 #' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the 
-#'              transparency of the wind radii chart. This parameter has a  
+#' @param alpha A numeric constant in the interval [0,1] controlling the
+#'              transparency of the wind radii chart. This parameter has a
 #'              default value of 0.4.
 #' @param stroke A numeric vector controlling the border with of the point.
-#' @param label A string vector containing the label that should be used 
+#' @param label A string vector containing the label that should be used
 #'              for each earthquake; this is usually a city or region name.
-#' @param n_max A integer constant. If n_max is used, only the n_max 
-#'              largest earthquakes, as determined by the value of size, 
-#'              are given labels. The default behavior is to label all 
+#' @param n_max A integer constant. If n_max is used, only the n_max
+#'              largest earthquakes, as determined by the value of size,
+#'              are given labels. The default behavior is to label all
 #'              earthquakes.
-#' 
-#' @return This function adds an earthquake timeline plot with labels to  
+#'
+#' @return This function adds an earthquake timeline plot with labels to
 #'         the current ggplot.
-#' 
+#'
 #' @importFrom ggplot2 layer
-#' 
+#'
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
-#' 
+#'
 #' ggplot2::ggplot(eq_data) +
-#'   geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
-#'                           size=EQ_MAG_MW, label=LocalLocation)) + 
-#'   labs(fill="# deaths", size="Magnitude") + 
+#'   geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
+#'                           size=EQ_MAG_MW, label=LocalLocation)) +
+#'   labs(fill="# deaths", size="Magnitude") +
 #'   eqTheme()
-#' 
+#'
 #' @export
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
-                                position = "identity", na.rm = FALSE, 
+                                position = "identity", na.rm = FALSE,
                                 show.legend = NA,
                                 inherit.aes = TRUE, n_max = NULL, ...) {
   ggplot2::layer(
@@ -285,18 +284,68 @@ geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
 }
 
 #' Create a theme for earthquake timeline plots.
-#' 
-#' This function creates a ggplot theme for earthquake timeline plots. 
+#'
+#' This function creates a ggplot theme for earthquake timeline plots.
 #' It is intended to be used with geom_timeline and geom_timeline_label.
-#' 
+#'
 #' @return This function changes the theme of a ggplot.
-#' 
+#'
 #' @importFrom ggplot2 layer
-#' 
+#'
 #' @export
 eqTheme <- function() {
-  ggplot2::theme_classic() + 
+  ggplot2::theme_classic() +
   ggplot2::theme(legend.position = "bottom") +
-  ggplot2::theme(axis.line.y = ggplot2::element_blank(), 
-                 axis.ticks.y = ggplot2::element_blank()) 
+  ggplot2::theme(axis.line.y = ggplot2::element_blank(),
+                 axis.ticks.y = ggplot2::element_blank())
+}
+
+#' Create a timeline plot of earthquakes quickly
+#'
+#' This function facilitates creating an earthquake timeline plot with
+#' or without location labels using a custom theme.
+#'
+#' @param dataset A data frame of earthquake data, as returned by
+#'                eq_clean_data.
+#' @param xmin An optional lower bound on the date range represented in
+#'             the plot.
+#' @param xmax An optional upper bound on the date range represented in
+#'             the plot.
+#' @param label A Boolean indicating whether labels showing the local
+#'              location of the earthquake should be included in the plot.
+#'
+#' @return This function creates an an earthquake timeline plot where the
+#'         fill color represents the total number of deaths and the point
+#'         size represents the magnitude.
+#'
+#' @importFrom ggplot2 ggplot aes labs
+#'
+#' @examples
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
+#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+#'
+#' eq_timeline(dataset=eq_data, label=TRUE)
+#'
+#' @export
+eq_timeline <- function(dataset, xmin = NA, xmax = NA, label = FALSE) {
+  if(!is.na(xmin)) {
+    dataset <- subset(dataset, DATE >= xmin)
+  }
+  if(!is.na(xmax)) {
+    dataset <- subset(dataset, DATE <= xmax)
+  }
+
+  if(label) {
+    ggplot2::ggplot(eq_data) +
+      geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
+                              size=EQ_MAG_MW, label=LocalLocation)) +
+      ggplot2::labs(fill="# deaths", size="Magnitude") +
+      eqTheme()
+  } else {
+    ggplot2::ggplot(dataset) +
+      geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
+                    size=EQ_MAG_MW)) +
+      ggplot2::labs(fill="# deaths", size="Magnitude") +
+      eqTheme()
+  }
 }
