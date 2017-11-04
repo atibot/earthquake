@@ -99,7 +99,8 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 #'
 #' ggplot2::ggplot(eq_data) +
-#'   geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_MAG_MW)) +
+#'   geom_timeline(aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
+#'                  size=EQ_PRIMARY)) +
 #'   labs(fill="# deaths", size="Magnitude") +
 #'   eqTheme()
 #'
@@ -267,7 +268,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #'
 #' ggplot2::ggplot(eq_data) +
 #'   geom_timeline_label(aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-#'                           size=EQ_MAG_MW, label=LocalLocation)) +
+#'                           size=EQ_PRIMARY, label=LocalLocation)) +
 #'   labs(fill="# deaths", size="Magnitude") +
 #'   eqTheme()
 #'
@@ -340,13 +341,13 @@ eq_timeline <- function(dataset, xmin = NA, xmax = NA, label = FALSE) {
   if(label) {
     ggplot2::ggplot(eq_data) +
       geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-                              size=EQ_MAG_MW, label=LocalLocation)) +
+                              size=EQ_PRIMARY, label=LocalLocation)) +
       ggplot2::labs(fill="# deaths", size="Magnitude") +
       eqTheme()
   } else {
     ggplot2::ggplot(dataset) +
       geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-                    size=EQ_MAG_MW)) +
+                    size=EQ_PRIMARY)) +
       ggplot2::labs(fill="# deaths", size="Magnitude") +
       eqTheme()
   }
