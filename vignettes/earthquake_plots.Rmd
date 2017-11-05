@@ -1,0 +1,77 @@
+---
+title: "Overview of Earthquake Plots"
+author: "L. Mitchell"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview of Earthquake Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Timeline Plots
+
+The `earthquake` package contains functions for creating timeline plots 
+and maps of earthquakes. The `eq_timeline` function produces a timeline 
+plot like the one shown below. Date is represented on the x-axis, 
+Country is represented on the y-axis, point size reflects the magnitude 
+(based on the field `EQ_PRIMARY`), and fill color reflects the total 
+number of deaths (based on the field `TOTAL_DEATHS`). A custom theme, 
+`eqTheme`, is automatically applied. 
+
+```{r, fig.height=4, fig.width=8}
+eqDataClean <- eq_clean_data("NOAA_earthquakes.txt")
+eqDataShort <- eqDataClean %>%
+  dplyr::filter(Country %in% c("Mexico","New Zealand") & YEAR >= 2006 & 
+                YEAR <= 2010)
+eq_timeline(dataset=eqDataShort)
+```
+
+If the optional argument `label` is set to `TRUE`, the value of 
+`LocalLocation` is added to each point as a text label:
+
+```{r, fig.height=5, fig.width=8}
+eq_timeline(dataset=eqDataShort, label=TRUE)
+```
+
+The optional arguments `xmin` and `xmax` can be used to subset the data:
+
+```{r, fig.height=4, fig.width=8}
+eq_timeline(dataset=eqDataShort, xmin=as.Date("2009-01-01"), xmax=as.Date("2011-01-01"))
+```
+
+
+The function `eq_timeline` is designed to make producing these plot easier, 
+but if you want to change the aesthetics arguments or theme, you can use 
+the underlying geoms directly:
+
+```{r, fig.height=4, fig.width=8}
+ggplot2::ggplot(eqDataShort) +
+  geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_PRIMARY))
+```
+
+```{r, fig.height=5, fig.width=8}
+ggplot2::ggplot(eqDataShort) +
+  geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_PRIMARY, 
+                                   label=LocalLocation))
+```
+
+## Interactive Maps
+
+The function `eq_map` produces interactive maps using the JavaScript 
+library leaflet (http://leafletjs.com).  Running this function will cause 
+a map to open in your default browser. A circle is shown at the epicenter of 
+each earthquake with the circle radius being proportional to the magnitude 
+(based on the field `EQ_PRIMARY`). The argument `annot_col` should 
+be the name of a column (as a string) in the dataset. This column is used 
+to generate content for pop-up windows that appear when you click on a 
+circle. The function `eq_create_label` can be used to generate a summary 
+consisting of the earthquake's local location (`LocalLocation`), magnitude 
+(`EQ_PRIMARY`), and total number of deaths (`TOTAL_DEATHS`).
+
+```{r, fig.height=5, fig.width=8}
+eqDataMexico <- eqDataShort %>%
+  dplyr::filter(Country == "Mexico")
+eqDataMexico$popup_text <- eq_create_label(eqDataMexico)
+eq_map(dataset=eqDataMexico, annot_col="popup_text")
+```

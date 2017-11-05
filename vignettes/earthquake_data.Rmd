@@ -1,0 +1,77 @@
+---
+title: "Overview of Earthquake Data"
+author: "L. Mitchell"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview of Earthquake Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The `earthquake` R package was built to facilitate using data on 
+"significant" earthquakes compiled by the 
+National Geophysical Data Center/World Data Service*. The data are 
+available on the National Oceanic and Atmospheric Administration (NOAA) 
+website: https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1. The 
+following is a description of the data taken directly from the NOAA website:
+
+  ```
+  "The Significant Earthquake Database contains information on destructive 
+  earthquakes from 2150 B.C. to the present that meet at least one of the 
+  following criteria: Moderate damage (approximately $1 million or more), 
+  10 or more deaths, Magnitude 7.5 or greater, Modified Mercalli 
+  Intensity X or greater, or the earthquake generated a tsunami."
+  ```
+
+## Reading in the data
+
+A copy of the entire data set (downloaded in October 2017) is provided with 
+the package in a file called `NOAA_earthquakes.txt`. It can be read into R 
+using the function `eq_read_data`. Simply pass in the file name as the only 
+argument:
+
+```{r}
+eqDataRaw <- eq_read_data(filename="NOAA_earthquakes.txt")
+knitr::kable(head(eqDataRaw[ ,1:9], 10))  
+```
+
+## Cleaning the data
+  
+The function `eq_clean_data` reads in the file and attempts to clean up 
+some of the fields. In particular, it creates a `DATE` field reflecting the 
+date of each earthquake. For simplicity, any missing months are filled in 
+with January and any missing days are filled in with 1; these imputations 
+should be taken into consideration when analyzing earthquake dates. Dates 
+with negative years (i.e. B.C. dates) are converted to R Date objects by 
+(1) calculating the number of days between the date "0000-01-01" and the 
+corresponding date with a positive year, then (2) passing this number to 
+`as.Date()` with the argument `origin = "0000-01-01"`. This can result in 
+mismatches between the original (negative year) date and the new Date 
+object, so some care should also be taken when working with B.C. dates in 
+the `DATE` field. An additional field, `AD`, is also created reflecting 
+whether the original date fell into the A.D. period (`TRUE`) or B.C. 
+period (`FALSE`).  This field can be used to filter out one period or the 
+other.
+
+The function `eq_clean_data` also attempts to clean up some of the strings 
+describing earthquake locations. For example, this function creates the field 
+`Country`, which is a version of the field `COUNTRY` in the raw data 
+file formatted in title case rather than uppercase (e.g., 
+`JAPAN` in the field `COUNTRY` becomes `Japan` in the field `Country`). A 
+new field `LocalLocation` is also created; this is a cleaned up and sometime 
+abbreviated version of the raw field `LOCATION_NAME`.
+
+The syntax for `eq_clean_data` is similar to that of `eq_read_data`:
+
+```{r}
+eqDataClean <- eq_clean_data("NOAA_earthquakes.txt")
+knitr::kable(head(eqDataClean[ ,c("DATE","Country","LocalLocation",
+                                  "EQ_PRIMARY","Longitude","Latitude")], 10))
+```
+
+## References
+
+*National Geophysical Data Center / World Data Service (NGDC/WDS): 
+Significant Earthquake Database. National Geophysical Data Center, 
+NOAA. doi:10.7289/V5TD9V7K
