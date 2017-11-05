@@ -339,7 +339,7 @@ eq_timeline <- function(dataset, xmin = NA, xmax = NA, label = FALSE) {
   }
 
   if(label) {
-    ggplot2::ggplot(eq_data) +
+    ggplot2::ggplot(dataset) +
       geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
                               size=EQ_PRIMARY, label=LocalLocation)) +
       ggplot2::labs(fill="# deaths", size="Magnitude") +
