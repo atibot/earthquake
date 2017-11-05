@@ -26,8 +26,6 @@ each earthquake in a dataset.
 eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
 
-eq_data \%>\% 
-  dplyr::filter(COUNTRY == "MEXICO" & YEAR >= 2000) \%>\% 
-  eq_map(annot_col = "DATE")
+eq_map(dataset=eq_data, annot_col = "DATE")
 
 }
