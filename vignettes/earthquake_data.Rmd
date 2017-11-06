@@ -1,7 +1,4 @@
 
-library(earthquake)
-library(knitr)
-
 ---
 title: "Overview of Earthquake Data"
 author: "L. Mitchell"
@@ -12,6 +9,12 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r}
+library(earthquake)
+library(knitr)
+library(magrittr)
+```
 
 The `earthquake` R package was built to facilitate using data on 
 "significant" earthquakes compiled by the 

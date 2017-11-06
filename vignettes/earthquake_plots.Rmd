@@ -1,9 +1,4 @@
 
-library(earthquake)
-library(knitr)
-library(dplyr)
-library(ggplot2)
-
 ---
 title: "Overview of Earthquake Plots"
 author: "L. Mitchell"
@@ -14,6 +9,14 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r}
+library(earthquake)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(magrittr)
+```
 
 ## Timeline Plots
 
