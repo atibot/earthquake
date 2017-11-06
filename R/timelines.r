@@ -93,6 +93,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #'         ggplot.
 #'
 #' @importFrom ggplot2 layer
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
@@ -261,6 +262,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #'         the current ggplot.
 #'
 #' @importFrom ggplot2 layer
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
@@ -320,6 +322,7 @@ eqTheme <- function() {
 #'         size represents the magnitude.
 #'
 #' @importFrom ggplot2 ggplot aes labs
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%

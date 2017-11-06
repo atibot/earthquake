@@ -14,6 +14,7 @@
 #'         each circle is determined by the field EQ_PRIMARY. 
 #' 
 #' @importFrom leaflet leaflet addProviderTiles addCircleMarkers
+#' @importFrom magrittr "%>%"
 #' 
 #' @examples
 #' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
@@ -47,6 +48,8 @@ eq_map <- function(dataset, annot_col) {
 #          magnitude, and number of deaths for each earthquake. If any 
 #'         information is missing, the HTML object for that value is 
 #'         omitted.
+#' 
+#' @importFrom magrittr "%>%"
 #' 
 #' @examples
 #' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
