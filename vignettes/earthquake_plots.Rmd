@@ -13,11 +13,7 @@ vignette: >
 
 The `earthquake` package contains functions for creating timeline plots 
 and maps of earthquakes. The `eq_timeline` function produces a timeline 
-plot like the one shown below. Date is represented on the x-axis, 
-Country is represented on the y-axis, point size reflects the magnitude 
-(based on the field `EQ_PRIMARY`), and fill color reflects the total 
-number of deaths (based on the field `TOTAL_DEATHS`). A custom theme, 
-`eqTheme`, is automatically applied. 
+plot built on the `ggplot2` library. An example plot is shown below. 
 
 ```{r, fig.height=4, fig.width=8}
 eqDataClean <- eq_clean_data("NOAA_earthquakes.txt")
@@ -26,6 +22,12 @@ eqDataShort <- eqDataClean %>%
                 YEAR <= 2010)
 eq_timeline(dataset=eqDataShort)
 ```
+
+Date is represented on the x-axis, Country is represented on the y-axis, 
+point size reflects the magnitude (based on the field `EQ_PRIMARY`), and 
+fill color reflects the total number of deaths (based on the field 
+`TOTAL_DEATHS`). A custom theme with a white background, `eqTheme`, is 
+automatically applied. 
 
 If the optional argument `label` is set to `TRUE`, the value of 
 `LocalLocation` is added to each point as a text label:
@@ -41,9 +43,9 @@ eq_timeline(dataset=eqDataShort, xmin=as.Date("2009-01-01"), xmax=as.Date("2011-
 ```
 
 
-The function `eq_timeline` is designed to make producing these plot easier, 
+The function `eq_timeline` is designed to make producing these plots easier, 
 but if you want to change the aesthetics arguments or theme, you can use 
-the underlying geoms directly:
+the underlying geoms directly, as shown in the following examples.
 
 ```{r, fig.height=4, fig.width=8}
 ggplot2::ggplot(eqDataShort) +
@@ -65,13 +67,24 @@ each earthquake with the circle radius being proportional to the magnitude
 (based on the field `EQ_PRIMARY`). The argument `annot_col` should 
 be the name of a column (as a string) in the dataset. This column is used 
 to generate content for pop-up windows that appear when you click on a 
-circle. The function `eq_create_label` can be used to generate a summary 
-consisting of the earthquake's local location (`LocalLocation`), magnitude 
-(`EQ_PRIMARY`), and total number of deaths (`TOTAL_DEATHS`).
+circle. The following example shows the date in the pop-up window. Click 
+on any of the blue circles to see the pop-up window.
 
 ```{r, fig.height=5, fig.width=8}
-eqDataMexico <- eqDataShort %>%
-  dplyr::filter(Country == "Mexico")
+eqDataMexico <- eqDataClean %>%
+  dplyr::filter(Country == "Mexico" & YEAR > 2002)
+eq_map(dataset=eqDataMexico, annot_col="DATE")
+```
+
+The function `eq_create_label` can be used to generate a summary consisting 
+of the earthquake's local location (`LocalLocation`), magnitude 
+(`EQ_PRIMARY`), and total number of deaths (`TOTAL_DEATHS`). In the 
+following example `eq_clean_label` is used to create a new column in the 
+data set called `popup_text`, then that column is used in the pop-up window.
+
+```{r, fig.height=5, fig.width=8}
+eqDataMexico <- eqDataClean %>%
+  dplyr::filter(Country == "Mexico" & YEAR > 2002)
 eqDataMexico$popup_text <- eq_create_label(eqDataMexico)
 eq_map(dataset=eqDataMexico, annot_col="popup_text")
 ```

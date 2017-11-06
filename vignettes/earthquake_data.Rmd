@@ -70,6 +70,14 @@ knitr::kable(head(eqDataClean[ ,c("DATE","Country","LocalLocation",
                                   "EQ_PRIMARY","Longitude","Latitude")], 10))
 ```
 
+`eq_clean_data` uses the function `clean_local_location` to help clean up the 
+`LocalLocation` field, which can consist of multiple locations separated by 
+commas. Here is an example of how it would transform a given string:
+
+```{r}
+clean_local_location("CUZCO,COLLAO,LIMA")
+```
+
 ## References
 
 *National Geophysical Data Center / World Data Service (NGDC/WDS): 
