@@ -1,3 +1,7 @@
+
+library(earthquake)
+library(knitr)
+
 ---
 title: "Overview of Earthquake Data"
 author: "L. Mitchell"

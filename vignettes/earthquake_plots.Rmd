@@ -1,3 +1,9 @@
+
+library(earthquake)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+
 ---
 title: "Overview of Earthquake Plots"
 author: "L. Mitchell"
