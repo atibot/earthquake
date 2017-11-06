@@ -96,6 +96,7 @@ clean_local_location <- function(local_loc_str) {
 #' @importFrom dplyr mutate
 #' @importFrom purrr map_if
 #' @importFrom stringr str_to_title str_trim
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' my_clean_data <- eq_clean_data(filename="NOAA_earthquakes.txt")
