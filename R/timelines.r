@@ -333,22 +333,23 @@ eqTheme <- function() {
 #' @export
 eq_timeline <- function(dataset, xmin = NA, xmax = NA, label = FALSE) {
   if(!is.na(xmin)) {
-    dataset <- subset(dataset, DATE >= xmin)
+    dataset <- subset(dataset, dataset$DATE >= xmin)
   }
   if(!is.na(xmax)) {
-    dataset <- subset(dataset, DATE <= xmax)
+    dataset <- subset(dataset, dataset$DATE <= xmax)
   }
 
   if(label) {
     ggplot2::ggplot(dataset) +
-      geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-                              size=EQ_PRIMARY, label=LocalLocation)) +
+      geom_timeline_label(ggplot2::aes_(x=~DATE, y=~Country, 
+                          fill=~TOTAL_DEATHS, size=~EQ_PRIMARY, 
+                          label=~LocalLocation)) +
       ggplot2::labs(fill="# deaths", size="Magnitude") +
       eqTheme()
   } else {
     ggplot2::ggplot(dataset) +
-      geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-                    size=EQ_PRIMARY)) +
+      geom_timeline(ggplot2::aes_(x=~DATE, y=~Country, fill=~TOTAL_DEATHS,
+                    size=~EQ_PRIMARY)) +
       ggplot2::labs(fill="# deaths", size="Magnitude") +
       eqTheme()
   }
