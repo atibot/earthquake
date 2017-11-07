@@ -188,10 +188,8 @@ eq_clean_data <- function(filename) {
                             LocalLocation))
 
   ## Replace any missing or blank LocalLocation values with the country:
-  dat <- within(dat, {
-    LocalLocation[is.na(LocalLocation)] <- Country[is.na(LocalLocation)]
-    LocalLocation[LocalLocation == ""] <- Country[LocalLocation == ""]
-  })
+  replace_ind <- is.na(dat$LocalLocation) | dat$LocalLocation == ""
+  dat$LocalLocation[replace_ind] <- dat$Country[replace_ind]
 
   dat$Country <- factor(dat$Country)
 
