@@ -113,79 +113,79 @@ eq_clean_data <- function(filename) {
   dat$AD[dat$YEAR >= 0] <- FALSE
 
   dat <- dat %>%
-    dplyr::mutate(EQ_PRIMARY = as.numeric(EQ_PRIMARY),
-                  EQ_MAG_MW = as.numeric(EQ_MAG_MW),
-                  EQ_MAG_MS = as.numeric(EQ_MAG_MS),
-                  EQ_MAG_MB = as.numeric(EQ_MAG_MB),
-                  EQ_MAG_ML = as.numeric(EQ_MAG_ML),
-                  EQ_MAG_MFA = as.numeric(EQ_MAG_MFA),
-                  TOTAL_DEATHS = as.numeric(TOTAL_DEATHS),
-                  Latitude = as.numeric(LATITUDE),
-                  Longitude = as.numeric(LONGITUDE))
+    dplyr::mutate_(EQ_PRIMARY = ~ as.numeric(EQ_PRIMARY),
+                   EQ_MAG_MW = ~ as.numeric(EQ_MAG_MW),
+                   EQ_MAG_MS = ~ as.numeric(EQ_MAG_MS),
+                   EQ_MAG_MB = ~ as.numeric(EQ_MAG_MB),
+                   EQ_MAG_ML = ~ as.numeric(EQ_MAG_ML),
+                   EQ_MAG_MFA = ~ as.numeric(EQ_MAG_MFA),
+                   TOTAL_DEATHS = ~ as.numeric(TOTAL_DEATHS),
+                   Latitude = ~ as.numeric(LATITUDE),
+                   Longitude = ~ as.numeric(LONGITUDE))
 
   ## Create approximate date fields that replace missing months and
   ## days with 1.
   ## Work with Country and leave COUNTRY intact.
   dat <- dat %>%
-    dplyr::mutate(
-      posYear = abs(YEAR),
-      approxMonth = MONTH,
-      approxDay = DAY,
-      approxMonth = purrr::map_if(approxMonth, is.na, one),
-      approxDay = purrr::map_if(approxDay, is.na, one),
-      positiveDATE = as.Date(paste(posYear,approxMonth,approxDay,sep="-")),
-      DATE = positiveDATE, 
-      tmpDateDiff = as.numeric(as.Date("0000-01-01") - positiveDATE),
-      dateDiff = as.Date(tmpDateDiff, origin = "0000-01-01"),
-      Country = stringr::str_to_title(COUNTRY))
+    dplyr::mutate_(
+      posYear = ~ abs(YEAR),
+      approxMonth = ~ MONTH,
+      approxDay = ~ DAY,
+      approxMonth = ~ purrr::map_if(approxMonth, is.na, one),
+      approxDay = ~ purrr::map_if(approxDay, is.na, one),
+      positiveDATE = ~ as.Date(paste(posYear,approxMonth,approxDay,sep="-")),
+      DATE = ~ positiveDATE, 
+      tmpDateDiff = ~ as.numeric(as.Date("0000-01-01") - positiveDATE),
+      dateDiff = ~ as.Date(tmpDateDiff, origin = "0000-01-01"),
+      Country = ~ stringr::str_to_title(COUNTRY))
 
   neg_year <- dat$AD
   dat$DATE[neg_year] <- dat$dateDiff[neg_year]
 
   ## Remove temporary columns used for date manipulation:
   dat <- dat %>%
-  dplyr::select(-posYear, -tmpDateDiff, -dateDiff)
+  dplyr::select_(.dots = c("-posYear", "-tmpDateDiff", "-dateDiff"))
   
   ## Create a field containing the "local" location of the earthquake.
   dat <- dat %>%
-    dplyr::mutate(
-      LocalLocation = LOCATION_NAME,
+    dplyr::mutate_(
+      LocalLocation = ~ LOCATION_NAME,
       ## Remove anything in parentheses or brackets:
-      LocalLocation = gsub("\\(.+?\\)","",LocalLocation), # nongreedy
-      LocalLocation = gsub("\\[.+?\\]","",LocalLocation), # nongreedy
+      LocalLocation = ~ gsub("\\(.+?\\)","",LocalLocation), # nongreedy
+      LocalLocation = ~ gsub("\\[.+?\\]","",LocalLocation), # nongreedy
 
       ## Multiple countries are separated by semicolons.
       ## Retain only the first (primary) country:
-      LocalLocation = sub("(.*?)(;)(.*)","\\1",LocalLocation), #nongreedy
+      LocalLocation = ~ sub("(.*?)(;)(.*)","\\1",LocalLocation), #nongreedy
 
       ## Remove everything that comes before the last colon:
-      LocalLocation = gsub("(.+:)(.*)","\\2",LocalLocation), #greedy
-      LocalLocation = stringr::str_trim(LocalLocation))
+      LocalLocation = ~ gsub("(.+:)(.*)","\\2",LocalLocation), #greedy
+      LocalLocation = ~ stringr::str_trim(LocalLocation))
 
   ## Further clean up the local locations:
   dat$LocalLocation <- sapply(dat$LocalLocation, clean_local_location)
 
   dat <- dat %>%
-    dplyr::mutate(
-      LocalLocation = gsub("Of ","of ",LocalLocation),
+    dplyr::mutate_(
+      LocalLocation = ~ gsub("Of ","of ",LocalLocation),
       
       ## Fix capitalization for NE, SW, NW, and SE:
-      LocalLocation = gsub("Ne |Ne. ","NE ",LocalLocation),
-      LocalLocation = gsub("Sw |Sw. ","SW ",LocalLocation),
-      LocalLocation = gsub("Nw |Nw. ","NW ",LocalLocation),
-      LocalLocation = gsub("Se |Se. ","SE ",LocalLocation),
+      LocalLocation = ~ gsub("Ne |Ne. ","NE ",LocalLocation),
+      LocalLocation = ~ gsub("Sw |Sw. ","SW ",LocalLocation),
+      LocalLocation = ~ gsub("Nw |Nw. ","NW ",LocalLocation),
+      LocalLocation = ~ gsub("Se |Se. ","SE ",LocalLocation),
 
-      LocalLocation = gsub("^Ne$","NE",LocalLocation),
-      LocalLocation = gsub("^Sw$","SW",LocalLocation),
-      LocalLocation = gsub("^Nw$","NW",LocalLocation),
-      LocalLocation = gsub("^Se$","SE",LocalLocation),
+      LocalLocation = ~ gsub("^Ne$","NE",LocalLocation),
+      LocalLocation = ~ gsub("^Sw$","SW",LocalLocation),
+      LocalLocation = ~ gsub("^Nw$","NW",LocalLocation),
+      LocalLocation = ~ gsub("^Se$","SE",LocalLocation),
       
       ## Fix some very specific issues:
-      LocalLocation = sub("E Coast of","E Coast",LocalLocation),
-      LocalLocation = sub("N-Central","N Central",LocalLocation),
-      LocalLocation = sub("Me\\xico","Mexico",LocalLocation,fixed=TRUE),
-      LocalLocation = sub("Damage & Injuries In Every Dept.","",
-                          LocalLocation))
+      LocalLocation = ~ sub("E Coast of","E Coast",LocalLocation),
+      LocalLocation = ~ sub("N-Central","N Central",LocalLocation),
+      LocalLocation = ~ sub("Me\\xico","Mexico",LocalLocation,fixed=TRUE),
+      LocalLocation = ~ sub("Damage & Injuries In Every Dept.","",
+                            LocalLocation))
 
   ## Replace any missing or blank LocalLocation values with the country:
   dat <- within(dat, {
