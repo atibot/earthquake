@@ -1,9 +1,8 @@
 Package: earthquake
 Title: Functions for Working with Earthquake Data Set
 Version: 0.0.0.9000
-Authors@R: person("Lara", "Mitchell", email = "", role = c("aut", "cre"))
-Description: This package provides functions for cleaning and visualizing 
-earthquake data available through the NOAA website.
+Authors@R: person("Lara", "Mitchell", email = "44lami@gmail.com", role = c("aut", "cre"))
+Description: This package provides functions for cleaning and visualizing earthquake data available through the NOAA website.
 Depends: R (>= 3.3.1)
 Imports:
     readr,
