@@ -287,7 +287,7 @@ geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
 #'
 #' @return This function changes the theme of a ggplot.
 #'
-#' @importFrom ggplot2 layer
+#' @importFrom ggplot2 theme_classic theme element_blank
 eqTheme <- function() {
   ggplot2::theme_classic() +
   ggplot2::theme(legend.position = "bottom") +
