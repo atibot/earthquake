@@ -100,9 +100,7 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #'
 #' ggplot2::ggplot(eq_data) +
 #'   geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
-#'                  size=EQ_PRIMARY)) +
-#'   ggplot2::labs(fill="# deaths", size="Magnitude") +
-#'   eqTheme()
+#'                  size=EQ_PRIMARY))
 #'
 #' @export
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
@@ -268,9 +266,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #'
 #' ggplot2::ggplot(eq_data) +
 #'   geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-#'                           size=EQ_PRIMARY, label=LocalLocation)) +
-#'   ggplot2::labs(fill="# deaths", size="Magnitude") +
-#'   eqTheme()
+#'                           size=EQ_PRIMARY, label=LocalLocation))
 #'
 #' @export
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",

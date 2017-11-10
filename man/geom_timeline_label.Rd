@@ -53,8 +53,6 @@ eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 
 ggplot2::ggplot(eq_data) +
   geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
-                          size=EQ_PRIMARY, label=LocalLocation)) +
-  ggplot2::labs(fill="# deaths", size="Magnitude") +
-  eqTheme()
+                          size=EQ_PRIMARY, label=LocalLocation))
 
 }
