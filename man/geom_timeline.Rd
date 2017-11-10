@@ -36,13 +36,13 @@ This function adds an earthquake timeline plot to the current
 This function creates a plot showing earthquakes by date and country.
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\%
-  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 
 ggplot2::ggplot(eq_data) +
   geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
                  size=EQ_PRIMARY)) +
-  labs(fill="# deaths", size="Magnitude") +
+  ggplot2::labs(fill="# deaths", size="Magnitude") +
   eqTheme()
 
 }

@@ -93,16 +93,15 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #'         ggplot.
 #'
 #' @importFrom ggplot2 layer
-#' @importFrom magrittr "%>%"
 #'
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
-#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+#' eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 #'
 #' ggplot2::ggplot(eq_data) +
 #'   geom_timeline(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, 
 #'                  size=EQ_PRIMARY)) +
-#'   labs(fill="# deaths", size="Magnitude") +
+#'   ggplot2::labs(fill="# deaths", size="Magnitude") +
 #'   eqTheme()
 #'
 #' @export
@@ -262,16 +261,15 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #'         the current ggplot.
 #'
 #' @importFrom ggplot2 layer
-#' @importFrom magrittr "%>%"
 #'
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
-#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+#' eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 #'
 #' ggplot2::ggplot(eq_data) +
 #'   geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
 #'                           size=EQ_PRIMARY, label=LocalLocation)) +
-#'   labs(fill="# deaths", size="Magnitude") +
+#'   ggplot2::labs(fill="# deaths", size="Magnitude") +
 #'   eqTheme()
 #'
 #' @export
@@ -322,11 +320,10 @@ eqTheme <- function() {
 #'         size represents the magnitude.
 #'
 #' @importFrom ggplot2 ggplot aes labs
-#' @importFrom magrittr "%>%"
 #'
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>%
-#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+#' eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 #'
 #' eq_timeline(dataset=eq_data, label=TRUE)
 #'

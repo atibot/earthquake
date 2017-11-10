@@ -31,8 +31,8 @@ This function facilitates creating an earthquake timeline plot with
 or without location labels using a custom theme.
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\%
-  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 
 eq_timeline(dataset=eq_data, label=TRUE)
 

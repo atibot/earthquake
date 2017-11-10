@@ -48,13 +48,13 @@ add labels showing the city or region in which the earthquake took
 place.
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\%
-  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 
 ggplot2::ggplot(eq_data) +
   geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
                           size=EQ_PRIMARY, label=LocalLocation)) +
-  labs(fill="# deaths", size="Magnitude") +
+  ggplot2::labs(fill="# deaths", size="Magnitude") +
   eqTheme()
 
 }
