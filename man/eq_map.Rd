@@ -23,8 +23,8 @@ This function creates a leaflet map plot showing the epicenter of
 each earthquake in a dataset.
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
-  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 
 eq_map(dataset=eq_data, annot_col = "DATE")
 

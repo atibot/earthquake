@@ -22,11 +22,10 @@ the local location of the earthquake (LocalLocation), the magnitude
 (EQ_PRIMARY), and the total death count (TOTAL_DEATHS).
 }
 \examples{
-eq_data <- eq_clean_data("NOAA_earthquakes.txt") \%>\% 
-  dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
+eq_data$popup_text <- eq_create_label(eq_data)
 
-eq_data \%>\% 
-  dplyr::mutate(popup_text = eq_create_label(.)) \%>\% 
-  eq_map(annot_col = "popup_text")
+eq_map(eq_data, annot_col = "popup_text")
 
 }

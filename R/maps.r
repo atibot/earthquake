@@ -14,11 +14,10 @@
 #'         each circle is determined by the field EQ_PRIMARY. 
 #' 
 #' @importFrom leaflet leaflet addProviderTiles addCircleMarkers
-#' @importFrom magrittr "%>%"
 #' 
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
-#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+#' eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
 #' 
 #' eq_map(dataset=eq_data, annot_col = "DATE")
 #' 
@@ -49,15 +48,12 @@ eq_map <- function(dataset, annot_col) {
 #'         information is missing, the HTML object for that value is 
 #'         omitted.
 #' 
-#' @importFrom magrittr "%>%"
-#' 
 #' @examples
-#' eq_data <- eq_clean_data("NOAA_earthquakes.txt") %>% 
-#'   dplyr::filter(Country == "Mexico" & YEAR >= 2000)
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+#' eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
+#' eq_data$popup_text <- eq_create_label(eq_data)
 #' 
-#' eq_data %>% 
-#'   dplyr::mutate(popup_text = eq_create_label(.)) %>% 
-#'   eq_map(annot_col = "popup_text")
+#' eq_map(eq_data, annot_col = "popup_text")
 #' 
 #' @export
 eq_create_label <- function(dataset) {
