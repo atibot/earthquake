@@ -1,4 +1,7 @@
 library(earthquake)
+library(ggplot2)
+library(dplyr)
+library(magrittr)
 context("Function output")
 
 ## eq_read_data
