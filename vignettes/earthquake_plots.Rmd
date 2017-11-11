@@ -67,6 +67,25 @@ ggplot2::ggplot(eqDataShort) +
                                    label=LocalLocation))
 ```
 
+Compare the two plots below to see how the custom theme EqTheme changes the 
+appearance:
+
+```{r, fig.height=5, fig.width=8}
+ggplot2::ggplot(eqDataShort) +
+  geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_PRIMARY, 
+                                   label=LocalLocation))
+```
+
+```{r, fig.height=5, fig.width=8}
+ggplot2::ggplot(eqDataShort) +
+  geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS, size=EQ_PRIMARY, 
+                                   label=LocalLocation)) + 
+  eqTheme()
+```
+
+
+
+
 ## Interactive Maps
 
 The function `eq_map` produces interactive maps using the JavaScript 
