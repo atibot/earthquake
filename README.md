@@ -1,7 +1,7 @@
 
 
 # earthquake
-
+[![Build Status](https://travis-ci.org/lmitchell4/earthquake.svg?branch=master)](https://travis-ci.org/lmitchell4/earthquake)
 
 This is an R package for investigating data on significant earthquakes 
 around the world extending back to 2150 B.C. The data set was provided by 
