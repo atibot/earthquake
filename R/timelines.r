@@ -75,7 +75,8 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 
 #' Create a timeline plot of earthquakes
 #'
-#' This function creates a plot showing earthquakes by date and country.
+#' This function creates a plot showing earthquakes by date and country. 
+#' It uses the GeomTimeline geom.
 #'
 #' @param x A vector of dates on which earthquakes occurred.
 #' @param y A factor vector giving the country in which each earthquake
@@ -235,7 +236,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #' This function creates a plot showing earthquakes by date, country, and
 #' city or region. It is similar to geom_timeline, but has the option to
 #' add labels showing the city or region in which the earthquake took
-#' place.
+#' place. It uses the geomTimelineLabel geom.
 #'
 #' @param x A vector of dates on which earthquakes occurred.
 #' @param y A factor vector giving the country in which each earthquake

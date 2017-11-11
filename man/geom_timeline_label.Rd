@@ -45,7 +45,7 @@ This function adds an earthquake timeline plot with labels to
 This function creates a plot showing earthquakes by date, country, and
 city or region. It is similar to geom_timeline, but has the option to
 add labels showing the city or region in which the earthquake took
-place.
+place. It uses the geomTimelineLabel geom.
 }
 \examples{
 eq_data <- eq_clean_data("NOAA_earthquakes.txt")

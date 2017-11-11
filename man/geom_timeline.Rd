@@ -33,7 +33,8 @@ This function adds an earthquake timeline plot to the current
         ggplot.
 }
 \description{
-This function creates a plot showing earthquakes by date and country.
+This function creates a plot showing earthquakes by date and country. 
+It uses the GeomTimeline geom.
 }
 \examples{
 eq_data <- eq_clean_data("NOAA_earthquakes.txt")
