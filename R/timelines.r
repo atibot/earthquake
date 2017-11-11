@@ -20,7 +20,7 @@
 #'
 #' @return This returns a tree of grid objects.
 #'
-#' @importFrom ggplot2 ggproto aes
+#' @importFrom ggplot2 ggproto aes Geom
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree
 #'
 #' @export
@@ -140,7 +140,7 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 #'
 #' @return This returns a tree of grid objects.
 #'
-#' @importFrom ggplot2 ggproto aes
+#' @importFrom ggplot2 ggproto aes Geom draw_key_point
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree textGrob
 #'
 #' @export
