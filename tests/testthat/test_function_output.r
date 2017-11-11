@@ -54,9 +54,9 @@ test_that("geom_timeline is a ggplot", {
   expect_is(testPlot, "ggplot")
 })
 
-## geomTimelineLabel
-test_that("geomTimelineLabel is a Geom", {
-  equals(class(geomTimelineLabel), "Geom")
+## GeomTimelineLabel
+test_that("GeomTimelineLabel is a Geom", {
+  equals(class(GeomTimelineLabel), "Geom")
 })
 
 ## geom_timeline_label

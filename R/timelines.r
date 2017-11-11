@@ -145,7 +145,7 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree textGrob
 #'
 #' @export
-geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
+GeomTimelineLabel <- ggplot2::ggproto("GeomTimelineLabel", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y","label"),
   default_aes = ggplot2::aes(y = 1, shape = 21, size = 1, colour = "black",
@@ -236,7 +236,7 @@ geomTimelineLabel <- ggplot2::ggproto("geomTimelineLabel", ggplot2::Geom,
 #' This function creates a plot showing earthquakes by date, country, and
 #' city or region. It is similar to geom_timeline, but has the option to
 #' add labels showing the city or region in which the earthquake took
-#' place. It uses the geomTimelineLabel geom.
+#' place. It uses the GeomTimelineLabel geom.
 #'
 #' @param x A vector of dates on which earthquakes occurred.
 #' @param y A factor vector giving the country in which each earthquake
@@ -275,7 +275,7 @@ geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
                                 show.legend = NA,
                                 inherit.aes = TRUE, n_max = NULL, ...) {
   ggplot2::layer(
-    geom = geomTimelineLabel, mapping = mapping, data = data, stat = stat,
+    geom = GeomTimelineLabel, mapping = mapping, data = data, stat = stat,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, n_max = n_max, ...)
   )
