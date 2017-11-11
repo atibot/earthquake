@@ -54,4 +54,4 @@ NOAA. doi:10.7289/V5TD9V7K
 
 ## License
 
-This project is released under [the MIT License](https://github.com/lmitchell4/earthquake/blob/master/LICENSE).
+This project is released under [GPL-3 License](https://github.com/lmitchell4/earthquake/blob/master/LICENSE).
