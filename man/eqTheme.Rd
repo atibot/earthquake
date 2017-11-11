@@ -13,3 +13,12 @@ This function changes the theme of a ggplot.
 This function creates a ggplot theme for earthquake timeline plots.
 It is intended to be used with geom_timeline and geom_timeline_label.
 }
+\examples{
+eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
+
+ggplot2::ggplot(eq_data) +
+  geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
+                          size=EQ_PRIMARY, label=LocalLocation)) + 
+  eqTheme()
+}

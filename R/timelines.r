@@ -288,6 +288,16 @@ geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @return This function changes the theme of a ggplot.
 #'
 #' @importFrom ggplot2 theme_classic theme element_blank
+#' 
+#' @examples
+#' eq_data <- eq_clean_data("NOAA_earthquakes.txt")
+#' eq_data <- subset(eq_data, Country == "Mexico" & YEAR >= 2000)
+#'
+#' ggplot2::ggplot(eq_data) +
+#'   geom_timeline_label(ggplot2::aes(x=DATE, y=Country, fill=TOTAL_DEATHS,
+#'                           size=EQ_PRIMARY, label=LocalLocation)) + 
+#'   eqTheme()
+#' @export
 eqTheme <- function() {
   ggplot2::theme_classic() +
   ggplot2::theme(legend.position = "bottom") +

@@ -2,6 +2,7 @@
 
 export(GeomTimeline)
 export(clean_local_location)
+export(eqTheme)
 export(eq_clean_data)
 export(eq_create_label)
 export(eq_map)
