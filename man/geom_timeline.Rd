@@ -9,24 +9,25 @@ geom_timeline(mapping = NULL, data = NULL, stat = "identity",
   inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{x}{A vector of dates on which earthquakes occurred.}
+\item{mapping}{An aesthetic mapping created by ggplot2::aes.}
 
-\item{y}{A factor vector giving the country in which each earthquake
-occurred (optional).}
+\item{data}{A data frame containing the data to be plotted.}
 
-\item{shape}{A numeric vector giving the point shape to be used.}
+\item{stat}{A string indicating the data transformation to be used.}
 
-\item{size}{A numeric vector representing the size of each point.}
+\item{position}{A string giving the poistion adjustment.}
 
-\item{colour}{A string vector controlling the color of the point borders.}
+\item{na.rm}{A logical controlling how missing values are handled. If 
+FALSE, missing values are removed and a warning is printed, 
+otherwise missing values are removed without a warning.}
 
-\item{fill}{A string vector controlling the fill color of the points.}
+\item{show.legend}{A logical indicating whether the layer created by this 
+function should have a legend.}
 
-\item{alpha}{A numeric constant in the interval [0,1] controlling the
-transparency of the wind radii chart. This parameter has a
-default value of 0.4.}
+\item{inherit.aes}{A logical. If FALSE, the default aesthetics are 
+overridden.}
 
-\item{stroke}{A numeric vector controlling the border with of the point.}
+\item{...}{additional arguments passed to the layer.}
 }
 \value{
 This function adds an earthquake timeline plot to the current
@@ -34,7 +35,8 @@ This function adds an earthquake timeline plot to the current
 }
 \description{
 This function creates a plot showing earthquakes by date and country. 
-It uses the GeomTimeline geom.
+It uses the GeomTimeline geom. The arguments are similar to those use 
+in ggplot2 functions such as geom_point().
 }
 \examples{
 eq_data <- eq_clean_data("NOAA_earthquakes.txt")

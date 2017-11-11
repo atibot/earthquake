@@ -9,26 +9,6 @@
 \usage{
 GeomTimeline
 }
-\arguments{
-\item{x}{A vector of dates on which earthquakes occurred.}
-
-\item{y}{A factor vector giving the country in which each earthquake
-occurred (optional).}
-
-\item{shape}{A numeric vector giving the point shape to be used.}
-
-\item{size}{A numeric vector representing the size of each point.}
-
-\item{colour}{A string vector controlling the color of the point borders.}
-
-\item{fill}{A string vector controlling the fill color of the points.}
-
-\item{alpha}{A numeric constant in the interval [0,1] controlling the
-transparency of the wind radii chart. This parameter has a
-default value of 0.4.}
-
-\item{stroke}{A numeric vector controlling the border with of the point.}
-}
 \value{
 This returns a tree of grid objects.
 }
@@ -36,5 +16,19 @@ This returns a tree of grid objects.
 This class creates grobs need to visualize earthquakes by date and
 country. This class extends \code{Geom} and is used by
 \code{geom_timeline}. A point is plotted for each unique earthquake.
+}
+\details{
+The following aesthetics are used:
+x: A vector of dates on which earthquakes occurred (required).
+y: A factor vector giving the country in which each earthquake
+   occurred (optional).
+shape: A numeric vector giving the point shape to be used.
+size: A numeric vector representing the size of each point.
+colour: A string vector controlling the color of the point borders.
+fill: A string vector controlling the fill color of the points.
+alpha: A numeric constant in the interval [0,1] controlling the
+       transparency of the wind radii chart. This parameter has a
+       default value of 0.4.
+stroke: A numeric vector controlling the border with of the point.
 }
 \keyword{datasets}

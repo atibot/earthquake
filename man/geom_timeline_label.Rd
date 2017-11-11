@@ -10,32 +10,30 @@ geom_timeline_label(mapping = NULL, data = NULL, stat = "identity",
   inherit.aes = TRUE, n_max = NULL, ...)
 }
 \arguments{
+\item{mapping}{An aesthetic mapping created by ggplot2::aes.}
+
+\item{data}{A data frame containing the data to be plotted.}
+
+\item{stat}{A string indicating the data transformation to be used.}
+
+\item{position}{A string giving the poistion adjustment.}
+
+\item{na.rm}{A logical controlling how missing values are handled. If 
+FALSE, missing values are removed and a warning is printed, 
+otherwise missing values are removed without a warning.}
+
+\item{show.legend}{A logical indicating whether the layer created by this 
+function should have a legend.}
+
+\item{inherit.aes}{A logical. If FALSE, the default aesthetics are 
+overridden.}
+
 \item{n_max}{A integer constant. If n_max is used, only the n_max
 largest earthquakes, as determined by the value of size,
 are given labels. The default behavior is to label all
 earthquakes.}
 
-\item{x}{A vector of dates on which earthquakes occurred.}
-
-\item{y}{A factor vector giving the country in which each earthquake
-occurred (optional).}
-
-\item{shape}{A numeric vector giving the point shape to be used.}
-
-\item{size}{A numeric vector representing the size of each point.}
-
-\item{colour}{A string vector controlling the color of the point borders.}
-
-\item{fill}{A string vector controlling the fill color of the points.}
-
-\item{alpha}{A numeric constant in the interval [0,1] controlling the
-transparency of the wind radii chart. This parameter has a
-default value of 0.4.}
-
-\item{stroke}{A numeric vector controlling the border with of the point.}
-
-\item{label}{A string vector containing the label that should be used
-for each earthquake; this is usually a city or region name.}
+\item{...}{additional arguments passed to the layer.}
 }
 \value{
 This function adds an earthquake timeline plot with labels to

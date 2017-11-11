@@ -5,18 +5,19 @@
 #' This class creates grobs need to visualize earthquakes by date and
 #' country. This class extends \code{Geom} and is used by
 #' \code{geom_timeline}. A point is plotted for each unique earthquake.
-#'
-#' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake
-#'          occurred (optional).
-#' @param shape A numeric vector giving the point shape to be used.
-#' @param size A numeric vector representing the size of each point.
-#' @param colour A string vector controlling the color of the point borders.
-#' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the
-#'              transparency of the wind radii chart. This parameter has a
-#'              default value of 0.4.
-#' @param stroke A numeric vector controlling the border with of the point.
+#' 
+#' The following aesthetics are used:
+#' x: A vector of dates on which earthquakes occurred (required).
+#' y: A factor vector giving the country in which each earthquake
+#'    occurred (optional).
+#' shape: A numeric vector giving the point shape to be used.
+#' size: A numeric vector representing the size of each point.
+#' colour: A string vector controlling the color of the point borders.
+#' fill: A string vector controlling the fill color of the points.
+#' alpha: A numeric constant in the interval [0,1] controlling the
+#'        transparency of the wind radii chart. This parameter has a
+#'        default value of 0.4.
+#' stroke: A numeric vector controlling the border with of the point.
 #'
 #' @return This returns a tree of grid objects.
 #'
@@ -76,20 +77,22 @@ GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
 #' Create a timeline plot of earthquakes
 #'
 #' This function creates a plot showing earthquakes by date and country. 
-#' It uses the GeomTimeline geom.
-#'
-#' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake
-#'          occurred (optional).
-#' @param shape A numeric vector giving the point shape to be used.
-#' @param size A numeric vector representing the size of each point.
-#' @param colour A string vector controlling the color of the point borders.
-#' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the
-#'              transparency of the wind radii chart. This parameter has a
-#'              default value of 0.4.
-#' @param stroke A numeric vector controlling the border with of the point.
-#'
+#' It uses the GeomTimeline geom. The arguments are similar to those use 
+#' in ggplot2 functions such as geom_point().
+#' 
+#' @param mapping An aesthetic mapping created by ggplot2::aes.
+#' @param data A data frame containing the data to be plotted.
+#' @param stat A string indicating the data transformation to be used.
+#' @param position A string giving the poistion adjustment.
+#' @param na.rm A logical controlling how missing values are handled. If 
+#'              FALSE, missing values are removed and a warning is printed, 
+#'              otherwise missing values are removed without a warning.
+#' @param show.legend A logical indicating whether the layer created by this 
+#'                    function should have a legend.
+#' @param inherit.aes A logical. If FALSE, the default aesthetics are 
+#'                    overridden.
+#' @param ... additional arguments passed to the layer.
+#' 
 #' @return This function adds an earthquake timeline plot to the current
 #'         ggplot.
 #'
@@ -120,24 +123,25 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 #' This class creates grobs need to visualize earthquakes by date, country,
 #' and city or region. This class extends \code{Geom} and is used by
 #' \code{geom_timeline_label}. A point is plotted for each unique earthquake.
-#'
-#' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake
-#'          occurred (optional).
-#' @param shape A numeric vector giving the point shape to be used.
-#' @param size A numeric vector representing the size of each point.
-#' @param colour A string vector controlling the color of the point borders.
-#' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the
-#'              transparency of the wind radii chart. This parameter has a
-#'              default value of 0.4.
-#' @param stroke A numeric vector controlling the border with of the point.
-#' @param label A string vector containing the label that should be used
-#'              for each earthquake; this is usually a city or region name.
-#' @param n_max A integer constant. If n_max is used, only the n_max
-#'              largest earthquakes, as determined by the value of size,
-#'              are given labels. The default behavior is to label all
-#'              earthquakes.
+#' 
+#' The following aesthetics are used:
+#' x: A vector of dates on which earthquakes occurred.
+#' y: A factor vector giving the country in which each earthquake
+#'    occurred (optional).
+#' shape: A numeric vector giving the point shape to be used.
+#' size: A numeric vector representing the size of each point.
+#' colour: A string vector controlling the color of the point borders.
+#' fill: A string vector controlling the fill color of the points.
+#' alpha: A numeric constant in the interval [0,1] controlling the
+#'        transparency of the wind radii chart. This parameter has a
+#'        default value of 0.4.
+#' stroke: A numeric vector controlling the border with of the point.
+#' label: A string vector containing the label that should be used
+#'        for each earthquake; this is usually a city or region name.
+#' n_max: A integer constant. If n_max is used, only the n_max
+#'        largest earthquakes, as determined by the value of size,
+#'        are given labels. The default behavior is to label all
+#'        earthquakes.
 #'
 #' @return This returns a tree of grid objects.
 #'
@@ -237,24 +241,23 @@ GeomTimelineLabel <- ggplot2::ggproto("GeomTimelineLabel", ggplot2::Geom,
 #' city or region. It is similar to geom_timeline, but has the option to
 #' add labels showing the city or region in which the earthquake took
 #' place. It uses the GeomTimelineLabel geom.
-#'
-#' @param x A vector of dates on which earthquakes occurred.
-#' @param y A factor vector giving the country in which each earthquake
-#'          occurred (optional).
-#' @param shape A numeric vector giving the point shape to be used.
-#' @param size A numeric vector representing the size of each point.
-#' @param colour A string vector controlling the color of the point borders.
-#' @param fill A string vector controlling the fill color of the points.
-#' @param alpha A numeric constant in the interval [0,1] controlling the
-#'              transparency of the wind radii chart. This parameter has a
-#'              default value of 0.4.
-#' @param stroke A numeric vector controlling the border with of the point.
-#' @param label A string vector containing the label that should be used
-#'              for each earthquake; this is usually a city or region name.
+#' 
+#' @param mapping An aesthetic mapping created by ggplot2::aes.
+#' @param data A data frame containing the data to be plotted.
+#' @param stat A string indicating the data transformation to be used.
+#' @param position A string giving the poistion adjustment.
+#' @param na.rm A logical controlling how missing values are handled. If 
+#'              FALSE, missing values are removed and a warning is printed, 
+#'              otherwise missing values are removed without a warning.
+#' @param show.legend A logical indicating whether the layer created by this 
+#'                    function should have a legend.
+#' @param inherit.aes A logical. If FALSE, the default aesthetics are 
+#'                    overridden.
 #' @param n_max A integer constant. If n_max is used, only the n_max
 #'              largest earthquakes, as determined by the value of size,
 #'              are given labels. The default behavior is to label all
 #'              earthquakes.
+#' @param ... additional arguments passed to the layer.
 #'
 #' @return This function adds an earthquake timeline plot with labels to
 #'         the current ggplot.
