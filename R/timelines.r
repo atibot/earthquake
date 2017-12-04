@@ -24,7 +24,6 @@
 #' @importFrom ggplot2 ggproto aes Geom
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree
 #'
-#' @export
 GeomTimeline <- ggplot2::ggproto("GeomTimeline", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y"),
@@ -148,7 +147,6 @@ geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
 #' @importFrom ggplot2 ggproto aes Geom draw_key_point
 #' @importFrom grid pointsGrob unit gpar gList segmentsGrob gTree textGrob
 #'
-#' @export
 GeomTimelineLabel <- ggplot2::ggproto("GeomTimelineLabel", ggplot2::Geom,
   required_aes = c("x"),
   optional_aes = c("y","label"),
