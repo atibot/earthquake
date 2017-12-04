@@ -1,7 +1,7 @@
 
 
 # earthquake
-
+[![Build Status](https://travis-ci.org/lmitchell4/earthquake.svg?branch=master)](https://travis-ci.org/lmitchell4/earthquake)
 
 This is an R package for investigating data on significant earthquakes 
 around the world extending back to 2150 B.C. The data set was provided by 
@@ -12,11 +12,11 @@ through the National Oceanic and Atmospheric Administration (NOAA)
 A description of the data, as stated on the NOAA website, is as follows:
 
   ```
-  The Significant Earthquake Database contains information on destructive 
+  "The Significant Earthquake Database contains information on destructive 
   earthquakes from 2150 B.C. to the present that meet at least one of the 
   following criteria: Moderate damage (approximately $1 million or more), 
   10 or more deaths, Magnitude 7.5 or greater, Modified Mercalli 
-  Intensity X or greater, or the earthquake generated a tsunami.
+  Intensity X or greater, or the earthquake generated a tsunami."
   ```
 
 ## Installation
@@ -54,4 +54,4 @@ NOAA. doi:10.7289/V5TD9V7K
 
 ## License
 
-This project is released under [the MIT License](https://github.com/lmitchell4/earthquake/blob/master/LICENSE).
+This project is released under [GPL-3 License](https://github.com/lmitchell4/earthquake/blob/master/LICENSE).
